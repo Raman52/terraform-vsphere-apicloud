@@ -1,12 +1,15 @@
-variable "username" {
-  default = "administrator@vsphere.local"
+variable "vsphere_user" {
+  description = "The vSphere username"
+  type        = string
+  default     = "administrator@vsphere.local"
 }
- 
-variable "password" {
-  sensitive = true
-  default = "Admin@123"
+
+variable "vsphere_password" {
+  description = "The vSphere password"
+  type        = string
+  sensitive   = true
 }
- 
-variable "vcenter_ip" {
-  default = "192.168.29.80"
+variable "vsphere_server" {
+  description = "The vSphere server IP or hostname"
+  default     = "192.168.29.80"
 }
