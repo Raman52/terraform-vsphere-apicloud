@@ -5,10 +5,10 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 data "http" "get_session" {
-  url    = "https://${var.vcenter_ip}/rest/com/vmware/cis/session"
+  url    = "https://${var.vsphere_server}/rest/com/vmware/cis/session"
   method = "POST"
   request_headers = {
-    "Authorization" = "Basic ${base64encode("${var.username}:${var.password}")}"
+    "Authorization" = "Basic ${base64encode("${var.vsphere_user}:${var.vsphere_password}")}"
     "Content-Type"  = "application/json"
   }
   insecure = true
@@ -40,7 +40,7 @@ data "http" "get_session" {
 # }
  
 data "http" "list_vms" {
-  url = "https://${var.vcenter_ip}/rest/vcenter/vm/vm-101"              #?filter.power_states=POWERED_ON
+  url = "https://${var.vsphere_server}/rest/vcenter/vm/vm-101"              #?filter.power_states=POWERED_ON
  
   request_headers = {
     "vmware-api-session-id" = local.session_id
